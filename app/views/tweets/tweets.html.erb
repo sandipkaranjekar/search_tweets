@@ -1,0 +1,17 @@
+<div class="col-md-12">
+	<%= form_tag "", method: 'get' do %>
+		<%= text_field_tag('searchString', nil, class: "form-control input-lg", placeholder: "Search for # tag") %></br>
+		<%= submit_tag "Search", class: "btn btn-default btn-lg btn-block" %>
+	<% end %>
+</div>
+<div class="col-md-12">
+	<% if @tweets.present? %>
+		<h4><%= @tweets.count %> Tweet found for #<%= params[:searchString] %></h4>
+		<% @tweets.each do |tweet| %>
+			<blockquote>
+			  <p><%= tweet["text"] %></p>
+			  <footer><%= tweet["user"]["name"] %></footer>
+			</blockquote>
+		<% end %>
+	<% end %>
+</div>
